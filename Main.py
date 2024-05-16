@@ -5,10 +5,11 @@ pygame.init()
 screen = pygame.display.set_mode((900,600))
 pygame.display.set_caption("Tutorial")
 
-score = 0
-
 clock = pygame.time.Clock()
-Mainmenu_font = pygame.font.Font('Fonts/Freedom.ttf', 50)
+Mainmenu_font = pygame.font.Font(None, 50)
+
+score = 0
+player_grav = 0
 
 sky = pygame.image.load("Graphics/sky.png").convert_alpha()
 floor = pygame.image.load("Graphics/floor.png").convert_alpha()
@@ -16,17 +17,19 @@ floor = pygame.image.load("Graphics/floor.png").convert_alpha()
 name_surf = Mainmenu_font.render('Space Dodgers', True, (255, 255, 255))
 name_rect = name_surf.get_rect(center = (450, 50))
 
-score_surf = Mainmenu_font.render('Space Doders', True, (255, 255, 255))
-score_rect = name_surf.get_rect(center = (450, 50))
+score_surf = Mainmenu_font.render(f'Score: {score}', True, (255, 255, 255))
+score_rect = name_surf.get_rect(center = (450, 150))
 
 Bullet_surface = pygame.image.load('Graphics/Bullet.png').convert_alpha()
 Bullet_rect = Bullet_surface.get_rect(midbottom = (900, 350))
 
 player_surf = pygame.image.load("Graphics/Playership.png").convert_alpha()
 player_rect = player_surf.get_rect(midbottom = (150, 350))
-player_grav = 0
 
 while True:
+
+	score_surf = Mainmenu_font.render(f'Score: {score}', True, (255, 255, 255))
+	score_rect = name_surf.get_rect(center = (450, 150))
 
 	for event in pygame.event.get():
 		if event.type == pygame.QUIT:
@@ -61,7 +64,10 @@ while True:
 
 	Collod = player_rect.colliderect(Bullet_rect)
 	if Collod == True:
-		print("Collision")
+		score = 0
+		#print("Collision")
 
 	pygame.display.update()
 	clock.tick(60)
+
+score_run = False
