@@ -1,6 +1,7 @@
 import pygame
 from sys import exit
 import random
+from pygame import mixer 
 
 pygame.init()
 screen = pygame.display.set_mode((1200,900))
@@ -28,6 +29,12 @@ player_rect = player_surf.get_rect(midbottom = (150, 470))
 
 Bullet_surface = pygame.image.load('Graphics/Bullet.png').convert_alpha()
 Bullet_rect = Bullet_surface.get_rect(midbottom = (960, placingbulle))
+
+mixer.init() 
+mixer.music.load("Music/GameMusic.mp3") 
+mixer.music.set_volume(0.7) 
+musicrun = True
+pygame.mixer.music.play(loops=-1, start=0.0, fade_ms=0)
 
 while True:
 
