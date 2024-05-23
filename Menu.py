@@ -1,23 +1,48 @@
+# Import packages
 import Main
 import pygame
 from sys import exit
 import random
 from pygame import mixer 
 
+
+# Initializes the window and sets the size of it
 pygame.init()
 screen = pygame.display.set_mode((1200,900))
+
+
+# Making the title/caption
 pygame.display.set_caption("Space Dodgers")
 Icon = pygame.image.load('Graphics/Playership.png')
 pygame.display.set_icon(Icon)
-Mainmenu_font = pygame.font.Font(None, 50)
+
+
+# Setting fps
 clock = pygame.time.Clock()
+
+
+# Setting text style
+Mainmenu_font = pygame.font.Font(None, 50)
+
+
+# Setting text style
 font = pygame.font.Font(None, 50)
+
+
+# Set the button
 button_surface = pygame.Surface((150, 50))
+button_rect = pygame.Rect(500, 450, 150, 50)
+
 text = font.render("Play", True, (0, 0, 0))
 text_rect = text.get_rect(center=(button_surface.get_width()/2, button_surface.get_height()/2))
-button_rect = pygame.Rect(500, 450, 150, 50)  # Adjust the position as needed
+
+
+# Setting the game title
 name_surf = Mainmenu_font.render('Space Dodgers', True, (255, 255, 255))
 name_rect = name_surf.get_rect(center = (600, 300))
+
+
+# Make music
 mixer.init() 
 mixer.music.load("Music/GameMusic.mp3") 
 mixer.music.set_volume(0.7) 
@@ -44,12 +69,12 @@ while True:
             Main.Playfunc()
 
     if button_rect.collidepoint(pygame.mouse.get_pos()):
-        pygame.draw.rect(button_surface, (127, 255, 212), (1, 1, 148, 48))
+        pygame.draw.rect(button_surface, (56, 55, 53), (1, 1, 148, 48))
     else:
         pygame.draw.rect(button_surface, (0, 0, 0), (0, 0, 150, 50))
         pygame.draw.rect(button_surface, (255, 255, 255), (1, 1, 148, 48))
         pygame.draw.rect(button_surface, (0, 0, 0), (1, 1, 148, 1), 2)
-        pygame.draw.rect(button_surface, (0, 100, 0), (1, 48, 148, 10), 2)
+        pygame.draw.rect(button_surface, (0, 0, 0), (1, 48, 148, 10), 2)
   
 
 
